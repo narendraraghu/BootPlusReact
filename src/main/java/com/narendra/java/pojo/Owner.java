@@ -1,7 +1,10 @@
 package com.narendra.java.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Owner {
@@ -11,8 +14,9 @@ public class Owner {
     private String firstname, lastname;
 
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
-    private List<Car> cars;
+    private Set<Car> cars;
 
     public Owner() {
     }
@@ -47,11 +51,11 @@ public class Owner {
         this.lastname = lastname;
     }
 
-    public List<Car> getCars() {
+    public Set<Car> getCars() {
         return cars;
     }
 
-    public void setCars(List<Car> cars) {
+    public void setCars(Set<Car> cars) {
         this.cars = cars;
     }
 }
